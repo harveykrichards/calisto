@@ -1,0 +1,14 @@
+.calisto {
+
+  overflow: hidden;
+
+  &--rail {
+    display: flex;
+  }
+
+  &--slide {
+    font-size: initial;
+    display: inline-block;
+    flex: 0 0 100%;
+  }
+}
