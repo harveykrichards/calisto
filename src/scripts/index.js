@@ -1,6 +1,8 @@
 import { Calisto } from './calisto';
 
-const slider = new Calisto({
+window.Calisto = Calisto; // make Calisto public
+
+window.slider = new Calisto({
   infinite : true,
   container: document.getElementById('slider-1')
 });
