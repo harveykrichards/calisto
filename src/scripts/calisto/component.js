@@ -1,5 +1,5 @@
 class Calisto {
-  constructor( settings ) {
+  constructor( settings = {} ) {
 
     this.container = settings.container || false;
 
@@ -9,18 +9,18 @@ class Calisto {
     }
 
     // public variables
-    this.infinite = settings.infinite || true;
+    this.infinite = settings.infinite || false
     this.slides = [].slice.call( this.container.children ) || false; // converst htmlobject to array
     this.length = this.slides.length;
     this.speed = settings.speed || '300ms';
     this.slideStart = settings.slideStart || 0;
     this.controls = settings.controls || true;
     this.currentSlide = this.slideStart;
+    this.slidesInView = settings.slidesInView || 1;
 
     this._max = ( this.length - 1 );
     this._min = 0;
 
-    console.log(this.slides);
 
     this.wrap();
 
@@ -38,25 +38,35 @@ class Calisto {
     this._rail = document.createElement('div');
     this._rail.classList.add('calisto--rail');
 
-    const before = this.slides[ this.length - 1 ].cloneNode(true);
-          before.classList.add('calisto--slide');
-          before.classList.add('calisto--clone');
-          before.setAttribute('data-index', -1 );
+    if( this.infinite == true ) {
 
-    this._rail.appendChild(before);
+      const before = this.slides[ this.length - 1 ].cloneNode(true);
+            before.classList.add('calisto--slide');
+            before.classList.add('calisto--clone');
+            before.setAttribute('data-index', -1 );
+
+      this._rail.appendChild(before);
+    }
 
     for( let [index, slide] of this.slides.entries() ) {
       slide.classList.add('calisto--slide');
       slide.setAttribute('data-index', index )
+      if( this.slidesInView != 1 ) {
+        slide.setAttribute('style', 'flex: 0 0 ' + 100 / this.slidesInView + '%');
+      }
       this._rail.appendChild( slide );
     }
 
-    const after = this.slides[0].cloneNode(true);
-          after.classList.add('calisto--slide');
-          after.classList.add('calisto--clone');
-          after.setAttribute('data-index', this.length );
+    if( this.infinite == true ) {
 
-    this._rail.appendChild(after);
+      const after = this.slides[0].cloneNode(true);
+            after.classList.add('calisto--slide');
+            after.classList.add('calisto--clone');
+            after.setAttribute('data-index', this.length );
+
+      this._rail.appendChild(after);
+
+    }
 
     const wrap = document.createElement('div');
           wrap.classList.add('calisto');
@@ -68,7 +78,6 @@ class Calisto {
 
   goToSlide( index, transition = true, vertical = false ) {
     this.currentSlide = index;
-    console.log(this.currentSlide);
     index = ( this.infinite == true ) ? index + 1 : index;
 
     const active = document.querySelector('.calisto--slide.calisto--active');
@@ -147,7 +156,6 @@ class Calisto {
     }
 
     this.goToSlide( ++this.currentSlide );
-    console.log(this.currentSlide);
   }
 
   goToPrevSlide() {

@@ -1,7 +1,13 @@
 @import "./node_modules/foundation-sites/scss/foundation";
 
 $grid-row-width	: 800px;
+$code-border: none;
+$code-padding: 0;
+
+
 @include foundation-everything(true);
+
+@import "./node_modules/prismjs/themes/prism-tomorrow";
 
 @import 'styles'; // styles for calisto
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script:400,700'); // Dancing Script
@@ -37,6 +43,10 @@ section[role="main"] {
   padding: 60px 0;
 }
 
+section[role="settings"] {
+  padding: 60px 0;
+}
+
 .calisto-slider {
   .slide {
     text-align: center;
@@ -47,13 +57,15 @@ section[role="main"] {
     &::before {
       background: #FFF;
       content: '';
-      width: 95%;
-      height: 100%;
+      width: 98%;
+      height: 90%;
       display: block;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      box-shadow: 0px 0px 8px rgba(0,0,0,0.35);
+      border-radius: 4px;
     }
 
     span {
@@ -63,5 +75,27 @@ section[role="main"] {
       transform: translate(-50%, -50%);
       font-size: 60px;
     }
+  }
+}
+
+
+[role='slider'] {
+  margin-bottom: 60px;
+
+  h4 {
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    border-top: 1px dotted #FFF;
+    padding-top: 30px;
+    letter-spacing: 3px;
+  }
+
+  pre {
+    border: 10px solid #FFF;
+    max-width: 90%;
+    margin: 30px auto;
   }
 }

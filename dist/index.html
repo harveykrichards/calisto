@@ -13,15 +13,19 @@
       <div class="column">
       <hgroup>
           <h1>Calisto</h1>
-          <h6>A Lightweight ES6 Javascript Carousel</h6>
+          <h6>An ES6 Javascript Carousel</h6>
       </hgroup>
       </div>
     </div>
   </header>
 
   <section role="main">
-  <div class="row">
-    <div class="column">
+
+  <div class="row" role="slider">
+    <div class="column small-12">
+      <h4>Single Carousel</h4>
+    </div>
+    <div class="column small-12">
       <div id="slider-1" class="calisto-slider">
         <div class="slide">
           <span>1</span>
@@ -38,10 +42,135 @@
         <div class="slide">
           <span>5</span>
         </div>
+        <div class="slide">
+          <span>6</span>
+        </div>
       </div>
     </div>
+    <div class="column small-12">
+      <pre class="language-javascript">
+      <code class="language-javascript">
+      const slider = new Calisto({
+        container: document.getElementById('slider-1')
+      });
+      </code>
+      </pre>
+    </div>
   </div>
+
+  <div class="row" role="slider">
+    <div class="column small-12">
+      <h4>Infinite Scroll Carousel</h4>
+    </div>
+    <div class="column small-12">
+      <div id="slider-2" class="calisto-slider">
+        <div class="slide">
+          <span>1</span>
+        </div>
+        <div class="slide">
+          <span>2</span>
+        </div>
+        <div class="slide">
+          <span>3</span>
+        </div>
+        <div class="slide">
+          <span>4</span>
+        </div>
+        <div class="slide">
+          <span>5</span>
+        </div>
+        <div class="slide">
+          <span>6</span>
+        </div>
+      </div>
+    </div>
+    <div class="column small-12">
+      <pre class="language-javascript">
+      <code class="language-javascript">
+      const slider = new Calisto({
+        container: document.getElementById('slider-2'),
+        infinite : true
+      });
+      </code>
+      </pre>
+    </div>
   </div>
+
+  <div class="row" role="slider">
+    <div class="column small-12">
+      <h4>Infinite Scroll Carousel</h4>
+    </div>
+    <div class="column small-12">
+      <div id="multiple" class="calisto-slider">
+        <div class="slide">
+          <span>1</span>
+        </div>
+        <div class="slide">
+          <span>2</span>
+        </div>
+        <div class="slide">
+          <span>3</span>
+        </div>
+        <div class="slide">
+          <span>4</span>
+        </div>
+        <div class="slide">
+          <span>5</span>
+        </div>
+        <div class="slide">
+          <span>6</span>
+        </div>
+      </div>
+    </div>
+    <div class="column small-12">
+      <pre class="language-javascript">
+      <code class="language-javascript">
+      const slider = new Calisto({
+        container: document.getElementById('slider-2'),
+        slidesInView: 3,
+        infinite : true
+      });
+      </code>
+      </pre>
+    </div>
+  </div>
+
+</section>
+
+<section role="settings">
+
+<div class="row">
+  <div class="column">
+    <h4>Settings</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Setting</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>container</td>
+          <td>Node</td>
+          <td>The target element</td>
+        </tr>
+        <tr>
+          <td>infinite</td>
+          <td>false (boolean)</td>
+          <td>Enables infinite scroll</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+</div>
+
+
+</section>
 
   <script src="./assets/js/index.js"></script>
 

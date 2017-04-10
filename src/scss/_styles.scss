@@ -16,12 +16,18 @@
       .control {
         position: absolute;
         top: 50%;
-        background: black;
+        background: #333;
         transform: translateY(-50%);
         padding: 10px;
         border-radius: 100%;
         min-width: 44px;
         cursor: pointer;
+        opacity: 0.5;
+        transition: all 300ms linear;
+
+        &:hover {
+          opacity: 1;
+        }
 
         &::before {
           display: block;
@@ -29,7 +35,7 @@
           text-align: center;
         }
 
-        $in : -6.5%;
+        $in : -8%;
 
         &--next {
           right: $in;
