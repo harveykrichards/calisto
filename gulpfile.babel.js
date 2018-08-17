@@ -9,32 +9,36 @@ import browserify from 'browserify';
 import babelify from 'babelify';
 import source from 'vinyl-source-stream';
 import browserSync from 'browser-sync';
+import path from 'path';
+
+const src = path.resolve(__dirname, './src');
+const dest = path.resolve(__dirname, './dist')
 
 gulp.task('connect', () => {
   browserSync.init({
       port: 3000,
       online: true,
       server: {
-          baseDir: "./dist"
+          baseDir: "./public"
       }
   });
 });
 
-gulp.task('compile:css', () => {
-  return gulp.src('./src/scss/app.scss')
+gulp.task('calisto:css', () => {
+  return gulp.src('./src/scss/calisto.scss')
     .pipe(sourcemaps.init())
     .pipe(
-      sass().on('error', sass.logError)
+      sass({outputStyle: 'compressed'}).on('error', sass.logError)
     )
     .pipe(autoprefixer({
         browsers: ['last 2 versions'],
         cascade: false
     }))
     .pipe(
-      sourcemaps.write()
+      sourcemaps.write('./')
     )
     .pipe(
-      gulp.dest('./dist/assets/css')
+      gulp.dest('./dist/css')
     ).pipe(browserSync.stream());
 });
 
