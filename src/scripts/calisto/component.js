@@ -1,7 +1,7 @@
 class Calisto {
-  constructor( settings = {} ) {
+  constructor( props = {} ) {
 
-    this.container = settings.container || false;
+    this.container = props.container || false;
 
     if( this.container === false ) {
       console.error('You must choose a container to initialize Calisto.');
@@ -9,14 +9,14 @@ class Calisto {
     }
 
     // public variables
-    this.infinite = settings.infinite || false
+    this.infinite = props.infinite || false
     this.slides = [].slice.call( this.container.children ) || false; // converst htmlobject to array
     this.length = this.slides.length;
-    this.speed = settings.speed || '300ms';
-    this.slideStart = settings.slideStart || 0;
-    this.controls = settings.controls || true;
+    this.speed = props.speed || '300ms';
+    this.slideStart = props.slideStart || 0;
+    this.controls = props.controls || true;
     this.currentSlide = this.slideStart;
-    this.slidesInView = settings.slidesInView || 1;
+    this.slidesInView = props.slidesInView || 1;
 
     this._max = ( this.length - 1 );
     this._min = 0;
